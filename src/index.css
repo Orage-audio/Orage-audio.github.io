@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Fugaz One';
+  src: url('/fonts/FugazOne-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-brand: 'Fugaz One', sans-serif;
+  --font-display: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --color-obsidian: #000000;
+  --color-chassis: #0B0B0D;
+  --color-panel: #141417;
+  --color-aluminum: #E4E6EA;
+  --color-aluminum-dim: #989DA8;
+  --color-orage: #C88318;
+  --color-orage-deep: #A86B10;
+  --color-orage-hot: #D99B32;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  background-color: #0A0A0C;
+  color: #F5F5F7;
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0A0A0C;
+  color: #F5F5F7;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+::-webkit-scrollbar-thumb {
+  background: #26262C;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C88318;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Expressive E-inspired matte dark cardstock / studio paper grain surface */
+.surface-cardstock {
+  background-color: #141417;
+  background-image: url('./assets/paper-grain.png');
+  background-repeat: repeat;
+  background-size: 220px 220px;
+}
+
+@keyframes sheen-sweep {
+  0% {
+    transform: translateX(-140%) skewX(-18deg);
+  }
+  100% {
+    transform: translateX(240%) skewX(-18deg);
+  }
+}
+
+.animate-sheen {
+  animation: sheen-sweep 5.2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  animation-delay: 1.5s;
+}
+
+@keyframes signal-flow {
+  from {
+    stroke-dashoffset: 36;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-signal {
+  stroke-dasharray: 6 12;
+  animation: signal-flow 1.2s linear infinite;
+}
+
+.animate-signal-slow {
+  stroke-dasharray: 5 13;
+  animation: signal-flow 1.8s linear infinite;
+}
