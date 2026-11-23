@@ -27,7 +27,7 @@ export function App() {
         <Highlights lang={lang} t={t.philosophy} />
         <InteractiveHardware lang={lang} t={t.hardware} />
         <Gallery t={t.gallery} />
-        <SoundLab t={t.soundLab} />
+        <SoundLab lang={lang} t={t.soundLab} />
         <Specs t={t.specs} />
         <About t={t.about} />
         <Contact t={t.contact} />
