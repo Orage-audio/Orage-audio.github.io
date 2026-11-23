@@ -68,6 +68,56 @@ const videoDemos: VideoDemo[] = [
       ],
     },
   },
+  {
+    id: 'solo-vox',
+    src: './video/solo-vox.mp4',
+    label: { it: 'solo vox', en: 'solo vox' },
+    headline: {
+      it: 'Voce solista: presenza davanti al mix senza asprezza.',
+      en: 'Lead vocal: front-and-center presence without harshness.',
+    },
+    description: {
+      it: 'Senti come Evolver ispessisce la voce e la porta in primo piano con armoniche calde, mentre l’Hi Cut a 3 dB/oct tiene sotto controllo le sibilanti e il controllo MIX preserva la naturalezza del respiro.',
+      en: 'Hear how Evolver thickens a lead vocal and pulls it forward with warm harmonics, while the 3 dB/oct Hi Cut tames sibilance and MIX keeps the natural breath intact.',
+    },
+    details: {
+      it: [
+        { k: 'Sorgente', v: 'Solo Lead Vocal' },
+        { k: 'Elaborazione', v: 'Drive · Hi Cut 3 dB/oct · MIX' },
+        { k: 'Registrazione', v: '100% Hardware reale · 48 kHz' },
+      ],
+      en: [
+        { k: 'Source', v: 'Solo Lead Vocal' },
+        { k: 'Processing', v: 'Drive · 3 dB/oct Hi Cut · MIX' },
+        { k: 'Capture', v: '100% Real Hardware · 48 kHz' },
+      ],
+    },
+  },
+  {
+    id: 'rock-n-roll-vox',
+    src: './video/rock-n-roll-vox.mp4',
+    label: { it: 'rock ’n’ roll vox', en: 'rock ’n’ roll vox' },
+    headline: {
+      it: 'Voce rock: grinta analogica che taglia il muro di chitarre.',
+      en: 'Rock vocal: analog grit that cuts through dense guitars.',
+    },
+    description: {
+      it: 'Quando serve carattere deciso senza usare distorsori artificiali: Drive spinto ed EVOLVE tirano fuori una saturazione nervosa e musicale, perfetta per far bucare la voce nei ritornelli più densi.',
+      en: 'When you need raw attitude without brittle digital distortion: hard Drive and EVOLVE deliver musical analog grit that helps vocals cut straight through dense choruses.',
+    },
+    details: {
+      it: [
+        { k: 'Sorgente', v: 'Rock ’n’ Roll Vocal' },
+        { k: 'Elaborazione', v: 'Drive spinto · EVOLVE · Parallelo' },
+        { k: 'Registrazione', v: '100% Hardware reale · 48 kHz' },
+      ],
+      en: [
+        { k: 'Source', v: 'Rock ’n’ Roll Vocal' },
+        { k: 'Processing', v: 'Hard Drive · EVOLVE · Parallel' },
+        { k: 'Capture', v: '100% Real Hardware · 48 kHz' },
+      ],
+    },
+  },
 ];
 
 function formatTime(sec: number) {
