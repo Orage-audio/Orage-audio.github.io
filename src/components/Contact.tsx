@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, CheckCircle2 } from 'lucide-react';
+import { Mail, CheckCircle2, Loader2 } from 'lucide-react';
 import type { Translations } from '../i18n/translations';
 
 interface ContactProps {
   t: Translations['contact'];
 }
+
+const TARGET_EMAIL = 'orageaudioinfo@gmail.com';
+const INSTAGRAM_URL = 'https://www.instagram.com/orageaudio';
 
 export function Contact({ t }: ContactProps) {
   const [name, setName] = useState('');
@@ -13,24 +16,56 @@ export function Contact({ t }: ContactProps) {
   const [studio, setStudio] = useState('');
   const [interest, setInterest] = useState<'info' | 'demo' | 'order'>('info');
   const [message, setMessage] = useState('');
+  const [sending, setSending] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = `[Orage EVOLVER] ${t.interests[interest]} — ${name}`;
-    const body = [
-      `Nome: ${name}`,
-      `Email: ${email}`,
-      studio ? `Studio/Progetto: ${studio}` : '',
-      `Richiesta: ${t.interests[interest]}`,
-      '',
-      message,
-    ]
-      .filter(Boolean)
-      .join('\n');
+    setSending(true);
 
-    window.location.href = `mailto:info@orageaudio.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setSubmitted(true);
+    const subject = `[Orage EVOLVER] ${t.interests[interest]} — ${name}`;
+    try {
+      const res = await fetch(`https://formsubmit.co/ajax/${TARGET_EMAIL}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          _subject: subject,
+          _template: 'table',
+          _captcha: 'false',
+          name,
+          email,
+          studio: studio || '-',
+          interest: t.interests[interest],
+          message,
+        }),
+      });
+
+      if (!res.ok) throw new Error('FormSubmit unavailable');
+      setSubmitted(true);
+      setName('');
+      setEmail('');
+      setStudio('');
+      setMessage('');
+    } catch {
+      // Graceful fallback to direct email client if offline/blocked
+      const body = [
+        `Nome: ${name}`,
+        `Email: ${email}`,
+        studio ? `Studio/Progetto: ${studio}` : '',
+        `Richiesta: ${t.interests[interest]}`,
+        '',
+        message,
+      ]
+        .filter(Boolean)
+        .join('\n');
+      window.location.href = `mailto:${TARGET_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      setSubmitted(true);
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -54,7 +89,7 @@ export function Contact({ t }: ContactProps) {
               </div>
               <div className="mt-4 flex flex-col gap-3.5">
                 <a
-                  href="https://www.instagram.com/orageaudio/"
+                  href={INSTAGRAM_URL}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-3 text-sm font-medium text-[#E4E6EA] transition-colors hover:text-[#D99B32]"
@@ -76,11 +111,11 @@ export function Contact({ t }: ContactProps) {
                   <span>@orageaudio</span>
                 </a>
                 <a
-                  href="mailto:info@orageaudio.com"
+                  href={`mailto:${TARGET_EMAIL}`}
                   className="inline-flex items-center gap-3 text-sm font-medium text-[#E4E6EA] transition-colors hover:text-[#D99B32]"
                 >
                   <Mail className="h-4 w-4 text-[#D99B32]" />
-                  <span>info@orageaudio.com</span>
+                  <span>{TARGET_EMAIL}</span>
                 </a>
               </div>
             </div>
@@ -132,7 +167,6 @@ export function Contact({ t }: ContactProps) {
                   </div>
                 </div>
 
-                {/* Expressive E-style minimal underline inputs */}
                 <div className="grid gap-6 sm:grid-cols-2">
                   <div>
                     <label
@@ -207,8 +241,10 @@ export function Contact({ t }: ContactProps) {
 
                 <button
                   type="submit"
-                  className="inline-flex h-12 items-center justify-center rounded-[4px] bg-[#C88318] px-9 text-sm font-semibold tracking-wide text-black transition-colors hover:bg-[#D99B32] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C88318]"
+                  disabled={sending}
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-[4px] bg-[#C88318] px-9 text-sm font-semibold tracking-wide text-black transition-colors hover:bg-[#D99B32] disabled:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C88318]"
                 >
+                  {sending && <Loader2 className="h-4 w-4 animate-spin" />}
                   {t.submit}
                 </button>
               </form>

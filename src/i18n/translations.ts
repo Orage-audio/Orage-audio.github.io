@@ -269,9 +269,9 @@ export const translations: Record<Lang, Translations> = {
       messageLabel: 'Messaggio',
       messagePlaceholder: 'Raccontaci il tuo setup o su quali sorgenti vorresti usare Evolver...',
       submit: 'Invia richiesta',
-      sentTitle: 'Richiesta pronta!',
+      sentTitle: 'Messaggio inviato!',
       sentBody:
-        'Si è aperto il tuo client email con il messaggio precompilato. In alternativa puoi scriverci direttamente su Instagram o via email.',
+        'Grazie per averci scritto: abbiamo ricevuto la tua richiesta e ti risponderemo al più presto direttamente via email.',
       directLabel: 'Contatto diretto',
     },
     footer: {
@@ -437,9 +437,9 @@ export const translations: Record<Lang, Translations> = {
       messageLabel: 'Message',
       messagePlaceholder: 'Tell us about your setup or what sources you want to run through Evolver...',
       submit: 'Send inquiry',
-      sentTitle: 'Inquiry ready!',
+      sentTitle: 'Message sent!',
       sentBody:
-        'Your email client opened with a pre-filled message. You can also reach us directly on Instagram or by email.',
+        'Thanks for reaching out — we received your inquiry and will reply directly by email as soon as possible.',
       directLabel: 'Direct channels',
     },
     footer: {
