@@ -15,5 +15,7 @@ dist-ssr
 .idea
 .DS_Store
 
-# Raw temporary Blender renders (WebP optimized versions are in public/images/)
+# Raw temporary Blender renders & extracted archives
 scripts/*.png
+scripts/*.wav
+scripts/recall-orig/

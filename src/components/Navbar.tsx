@@ -6,9 +6,19 @@ interface NavbarProps {
   lang: Lang;
   onToggleLang: (lang: Lang) => void;
   t: Translations['nav'];
+  activePage: 'home' | 'downloads';
+  onOpenDownloads: () => void;
+  onOpenHome: (sectionHash?: string) => void;
 }
 
-export function Navbar({ lang, onToggleLang, t }: NavbarProps) {
+export function Navbar({
+  lang,
+  onToggleLang,
+  t,
+  activePage,
+  onOpenDownloads,
+  onOpenHome,
+}: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -26,17 +36,20 @@ export function Navbar({ lang, onToggleLang, t }: NavbarProps) {
     { href: '#about', label: t.about },
   ];
 
+  const downloadsLabel = lang === 'it' ? 'Download & Recall' : 'Downloads & Recall';
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'border-b border-white/10 bg-[#0A0A0C]/85 backdrop-blur-xl'
+        scrolled || activePage === 'downloads'
+          ? 'border-b border-white/10 bg-[#0A0A0C]/90 backdrop-blur-xl'
           : 'bg-gradient-to-b from-black/80 to-transparent'
       }`}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8">
-        <a
-          href="#"
+        <button
+          type="button"
+          onClick={() => onOpenHome()}
           className="group flex items-baseline gap-3 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C88318]"
         >
           <span
@@ -49,18 +62,30 @@ export function Navbar({ lang, onToggleLang, t }: NavbarProps) {
           <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#B8BDC7]">
             EVOLVER
           </span>
-        </a>
+        </button>
 
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-7 md:flex" aria-label="Primary">
           {links.map((link) => (
-            <a
+            <button
               key={link.href}
-              href={link.href}
+              type="button"
+              onClick={() => onOpenHome(link.href)}
               className="text-xs font-medium tracking-wide text-[#A1A6B2] transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C88318]"
             >
               {link.label}
-            </a>
+            </button>
           ))}
+          <button
+            type="button"
+            onClick={onOpenDownloads}
+            className={`text-xs font-semibold tracking-wide transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C88318] ${
+              activePage === 'downloads'
+                ? 'text-[#D99B32]'
+                : 'text-[#E4E6EA] hover:text-[#D99B32]'
+            }`}
+          >
+            {downloadsLabel}
+          </button>
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
@@ -93,12 +118,13 @@ export function Navbar({ lang, onToggleLang, t }: NavbarProps) {
             </button>
           </div>
 
-          <a
-            href="#contact"
+          <button
+            type="button"
+            onClick={() => onOpenHome('#contact')}
             className="rounded-[4px] bg-[#C88318] px-5 py-2 text-xs font-semibold tracking-wide text-black transition-colors hover:bg-[#D99B32] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C88318]"
           >
             {t.cta}
-          </a>
+          </button>
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
@@ -124,22 +150,38 @@ export function Navbar({ lang, onToggleLang, t }: NavbarProps) {
         <div className="border-b border-white/10 bg-[#0A0A0C]/98 px-6 pb-6 pt-3 backdrop-blur-xl md:hidden">
           <div className="flex flex-col gap-3">
             {links.map((link) => (
-              <a
+              <button
                 key={link.href}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className="py-1.5 text-base font-medium text-[#E4E6EA] hover:text-[#D99B32]"
+                type="button"
+                onClick={() => {
+                  setMobileOpen(false);
+                  onOpenHome(link.href);
+                }}
+                className="py-1.5 text-left text-base font-medium text-[#E4E6EA] hover:text-[#D99B32]"
               >
                 {link.label}
-              </a>
+              </button>
             ))}
-            <a
-              href="#contact"
-              onClick={() => setMobileOpen(false)}
+            <button
+              type="button"
+              onClick={() => {
+                setMobileOpen(false);
+                onOpenDownloads();
+              }}
+              className="py-1.5 text-left text-base font-semibold text-[#D99B32]"
+            >
+              {downloadsLabel}
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setMobileOpen(false);
+                onOpenHome('#contact');
+              }}
               className="mt-2 inline-flex justify-center rounded-[4px] bg-[#C88318] px-5 py-3 text-sm font-semibold text-black"
             >
               {t.cta}
-            </a>
+            </button>
           </div>
         </div>
       )}
