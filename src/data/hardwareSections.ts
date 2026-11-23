@@ -2,7 +2,6 @@ import type { Lang } from '../i18n/translations';
 
 export interface HardwareSection {
   id: string;
-  /** Left & width percentages on the cropped 1U faceplate */
   leftPct: number;
   widthPct: number;
   ledColor: 'green' | 'blue' | 'amber' | 'orange';
@@ -20,17 +19,17 @@ export const hardwareSections: HardwareSection[] = [
     widthPct: 16.5,
     ledColor: 'green',
     title: {
-      it: 'Stadio di Ingresso · Gain & PAD',
-      en: 'Input Stage · Gain & PAD',
+      it: 'Gain & PAD · Controlla come entri nel circuito',
+      en: 'Gain & PAD · Control how hard you hit the core',
     },
     controls: ['GAIN (0–10)', 'PAD (OFF / ON)', 'INPUT METER L/R (Sig / 0 / Peak)'],
     summary: {
-      it: 'Calibra la spinta in ingresso con precisione prima della saturazione.',
-      en: 'Dial in the exact input level feeding the saturation core.',
+      it: 'Il punto di partenza del suono: decidi tu se restare pulito o spingere già l’ingresso.',
+      en: 'Where tone begins: stay clean and open or push the input stage before saturation.',
     },
     detail: {
-      it: 'Regola il livello fino a +9 dB per spingere dolcemente lo stadio successivo oppure attiva il PAD sui segnali molto caldi. I LED L/R (Sig, 0, Peak) ti danno feedback immediato sul headroom.',
-      en: 'Boost up to +9 dB to gently push the core or engage the PAD for hot converters and synths. Dedicated L/R LEDs (Sig, 0, Peak) keep headroom crystal clear.',
+      it: 'Con fino a +9 dB di guadagno porti subito in zona ottimale anche sorgenti deboli, mentre il tasto PAD gestisce senza sforzo synth hardware o convertitori molto caldi. I LED L/R (Sig, 0, Peak) ti permettono di calibrare l’headroom a colpo d’occhio.',
+      en: 'Up to +9 dB of input gain brings quiet stems right into the sweet spot, while the PAD switch tames hot hardware synths and converters effortlessly. Dedicated L/R LEDs (Sig, 0, Peak) keep your headroom unmistakable.',
     },
     specBadge: 'MAX +9 dB · PAD',
   },
@@ -40,17 +39,17 @@ export const hardwareSections: HardwareSection[] = [
     widthPct: 11.5,
     ledColor: 'blue',
     title: {
-      it: 'Cuore Armonico · Drive & EVOLVE',
-      en: 'Harmonic Core · Drive & EVOLVE',
+      it: 'Drive & EVOLVE · Da calore sottile a overdrive pieno',
+      en: 'Drive & EVOLVE · From subtle warmth to rich overdrive',
     },
     controls: ['DRIVE (0–10)', 'DUAL CLIPPING LED', 'SWITCH EVOLVE'],
     summary: {
-      it: 'Il carattere distintivo dell’Evolver: da saturazione vellutata a overdrive deciso.',
-      en: 'Evolver’s signature voice: from silky harmonic lift to bold overdrive.',
+      it: 'Due personalità nello stesso stadio: incolla un mix bus o trasforma completamente uno stem.',
+      en: 'Two distinct voices in one stage: glue a mix bus or completely transform a stem.',
     },
     detail: {
-      it: 'La manopola Drive dosa la densità armonica (fino al 25% di THD), monitorata dai due LED blu dinamici. Premi EVOLVE per cambiare marcia e aprire una seconda risposta armonica più aggressiva e presente.',
-      en: 'The Drive knob shapes harmonic density up to 25% THD with dual blue dynamic LEDs. Engage EVOLVE to shift gears into a richer, more aggressive saturation profile.',
+      it: 'Ruotando Drive dosi la saturazione con continuità (fino al 25% di THD), seguendo la risposta sui due LED blu dinamici. Attivando lo switch EVOLVE cambi marcia armonica: il suono diventa più denso, aggressivo e in avanti, perfetto per batterie, bassi, chitarre e synth.',
+      en: 'Turn Drive to sweep harmonic density smoothly up to 25% THD while watching the dual blue dynamic LEDs react to your groove. Engage EVOLVE to shift into a denser, more forward saturation voice tailored for drums, bass, guitars, and synths.',
     },
     specBadge: 'UP TO 25% THD',
   },
@@ -60,17 +59,17 @@ export const hardwareSections: HardwareSection[] = [
     widthPct: 17.5,
     ledColor: 'orange',
     title: {
-      it: 'Scolpitura Tonale · Low Cut & Hi Cut',
-      en: 'Tone Shaping · Low Cut & Hi Cut',
+      it: 'Low Cut & Hi Cut · Scolpisci solo ciò che saturi',
+      en: 'Low Cut & Hi Cut · Shape only what you saturate',
     },
     controls: ['LOW CUT (0–1 kHz)', 'HI CUT (600 Hz–22 kHz)', '3 dB/oct SLOPE'],
     summary: {
-      it: 'Filtri analogici ultra-dolci a 3 dB/ottava per tenere pulite basse e alte.',
-      en: 'Ultra-gentle 3 dB/octave analog filters to keep lows tight and highs silky.',
+      it: 'Mantieni basse solide e alte vellutate anche quando spingi il Drive al massimo.',
+      en: 'Keep lows tight and highs silky even when Drive is pushed to the limit.',
     },
     detail: {
-      it: 'Una pendenza da 3 dB/oct suona incredibilmente naturale: pulisce il sub fangoso prima che gonfi la saturazione e smussa le sibilanti sugli acuti senza mai "chiudere" la traccia.',
-      en: 'A 3 dB/oct slope feels effortlessly musical: tighten sub energy before it clouds the saturation and tame upper harmonics without ever sounding dull.',
+      it: 'La pendenza ultra-morbida da 3 dB/ottava è il segreto della musicalità di Evolver: ripulisce il sub fangoso prima che gonfi la saturazione e smussa le asprezze sugli acuti senza mai far suonare la traccia filtrata o stretta.',
+      en: 'The ultra-gentle 3 dB/octave slope is key to Evolver’s musicality: clean up sub-bass buildup before it muddies the saturation and soften harsh upper harmonics without ever making the track sound thin or filtered.',
     },
     specBadge: '3 dB/oct ANALOG',
   },
@@ -80,17 +79,17 @@ export const hardwareSections: HardwareSection[] = [
     widthPct: 16.8,
     ledColor: 'green',
     title: {
-      it: 'Stadio di Uscita · Volume & Output Meter',
-      en: 'Output Stage · Volume & Metering',
+      it: 'Volume & Output Meter · Confronta ad armi pari',
+      en: 'Volume & Output Meter · True level-matched A/B',
     },
     controls: ['VOLUME (0–10)', 'OUTPUT METER L/R (-10 a +3 dB)'],
     summary: {
-      it: 'Gain staging impeccabile con barra LED L/R a 5 segmenti.',
-      en: 'Effortless gain matching with 5-segment stereo L/R LED bars.',
+      it: 'Non farti ingannare dal volume più alto: pareggia il livello e giudica solo il timbro.',
+      en: 'Never get fooled by louder gain: match your level and judge pure tone.',
     },
     detail: {
-      it: 'Compensa esattamente l’aumento di volume introdotto dal Drive per confrontare Dry e Wet allo stesso livello percepito. Scala calibrata da -10 dB fino a +3 dB per entrambi i canali.',
-      en: 'Compensate for Drive makeup gain to compare Dry and Wet at matched loudness. Calibrated from -10 dB to +3 dB across both Left and Right channels.',
+      it: 'La manopola Volume compensa con precisione la spinta del Drive, mentre la doppia barra LED L/R calibrata da -10 a +3 dB (riferimento 0 dBVu) ti garantisce un rientro pulito nei convertitori della DAW.',
+      en: 'The Volume trim accurately compensates for Drive gain, while the dual 5-segment L/R LED bars (-10 to +3 dB, 0 dBVu reference) ensure clean, predictable return levels into your DAW converters.',
     },
     specBadge: 'L/R 5-LED METER',
   },
@@ -100,17 +99,17 @@ export const hardwareSections: HardwareSection[] = [
     widthPct: 12.2,
     ledColor: 'amber',
     title: {
-      it: 'Controllo Parallelo · MIX, Blend Off & Bypass',
-      en: 'Parallel Control · MIX, Blend Off & Bypass',
+      it: 'MIX, Blend Off & Bypass · Parallelo senza compromessi',
+      en: 'MIX, Blend Off & Bypass · Zero-compromise parallel',
     },
     controls: ['MIX (Dry → Wet)', 'BLEND OFF', 'BYPASS'],
     summary: {
-      it: 'Saturazione parallela istantanea direttamente nell’hardware.',
-      en: 'Instant parallel saturation built right into the analog box.',
+      it: 'Aggiungi peso e armoniche mantenendo intatto il punch dei transienti originali.',
+      en: 'Add harmonic weight while keeping every ounce of original transient punch.',
     },
     detail: {
-      it: 'Spingi il Drive al massimo e dosalo al 15–30% con la manopola MIX per mantenere intatti i transienti. Con BLEND OFF escludi il circuito di blend; con BYPASS verifichi subito il segnale originale.',
-      en: 'Push Drive hard and blend 15–30% back in via MIX to keep transients intact. Use BLEND OFF for a pure direct wet path, and BYPASS for instant A/B checks.',
+      it: 'Porta Drive in territorio estremo e poi miscelalo al 15–35% con MIX: ottieni spessore e grinta senza perdere attacco su cassa, rullante o voce. Quando vuoi il 100% di segnale puro, BLEND OFF bypassa il circuito di blend; con BYPASS verifichi subito il risultato.',
+      en: 'Push Drive hard and blend 15–35% back in with MIX for massive weight without sacrificing kick, snare, or vocal punch. Need 100% pure wet? BLEND OFF takes the blend stage out of the path, while BYPASS gives instant hardware A/B.',
     },
     specBadge: 'DRY/WET + BYPASS',
   },
@@ -120,17 +119,17 @@ export const hardwareSections: HardwareSection[] = [
     widthPct: 14.0,
     ledColor: 'amber',
     title: {
-      it: 'Accensione · Power Toggle & Telaio 1U',
-      en: 'Power · Heavy-Duty Toggle & 1U Chassis',
+      it: 'Power & Telaio 1U · Silenzioso e costruito per il rack',
+      en: 'Power & 1U Chassis · Quiet and built for daily work',
     },
     controls: ['POWER TOGGLE', 'STATUS LED', 'DC 14V 400mA'],
     summary: {
-      it: 'Interruttore metallico solido e alimentazione dedicata a basso rumore.',
-      en: 'Solid chrome toggle switch and low-noise dedicated power rail.',
+      it: 'Trasformatore esterno e scocca in alluminio per un tappeto di rumore pulitissimo.',
+      en: 'External power rail and solid aluminum enclosure for an ultra-quiet noise floor.',
     },
     detail: {
-      it: 'Costruzione robusta in alluminio spazzolato 1U pensata per resistere anni di sessioni in studio. Alimentazione esterna DC 14V 400mA per tenere il trasformatore lontano dal percorso audio.',
-      en: 'Rugged 1U brushed aluminum chassis built for years of daily studio work. External DC 14V 400mA power keeps transformer hum completely away from the audio path.',
+      it: 'L’alimentazione esterna DC 14V 400mA tiene il trasformatore lontano dal percorso audio eliminando ronzii di rete anche nei rack affollati. Interruttore metallico solido e costruzione pensata per accompagnarti per anni.',
+      en: 'External DC 14V 400mA power keeps transformer hum completely away from the audio circuit even in densely packed studio racks. Solid chrome toggle and aluminum chassis built for years of daily sessions.',
     },
     specBadge: '1U · DC 14V 400mA',
   },
